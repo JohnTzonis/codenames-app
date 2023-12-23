@@ -37,7 +37,7 @@ const Dropdown = ({ onSelect }) => {
     <div className="dropdown">
       {options.map((option, index) => (
         <div
-          className={`flex items-center rounded-xl px-1 mt-0.5 border border-black ${option === 'red' ? 'bg-red' : 'bg-blue'}`}
+          className={`flex items-center rounded-xl px-1 mt-0.5`}
           key={index}
           onClick={() => onSelect(option)}
         >
@@ -100,11 +100,11 @@ const App = () => {
       <div className="p-6 grid grid-cols-5 gap-10">
         {shuffledWords.map((word, index) => (
           <div
-            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-100' : selectedTeams[index] === 'blue' ? 'bg-blue-500' : 'bg-third'}`}
+            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : 'bg-third'}`}
             key={index}
             onClick={() => toggleDropdown(index)}
           >
-            <span className="p-4 text-2xl font-semibold m-auto">{word}</span>
+            <span className="p-4 text-2xl m-auto">{word}</span>
             {showDropdown && selectedWordIndex === index && (
               <Dropdown onSelect={(option) => handleDropdownSelect(option)} />
             )}
