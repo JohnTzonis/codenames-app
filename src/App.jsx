@@ -466,8 +466,8 @@ const App = () => {
   return (
     <div className="h-[100vh]">
       <Snowfall numSnowflakes={50} />
-      <div className="flex items-center pt-5 px-7">
-        <h1 className="text-xl grow">Codenames Game</h1>
+      <div className="flex items-center pt-5 px-9">
+        <h1 className="text-5xl text-teal-300 tracking-wide grow">Codenames</h1>
         <button className="button-49" onClick={generateGrid}>NEW GAME</button>
       </div>
       <div className="p-8 grid grid-cols-5 gap-5">
