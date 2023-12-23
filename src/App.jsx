@@ -403,7 +403,7 @@ const wordsData = [
 ];
 
 const Dropdown = ({ onSelect }) => {
-  const options = ['red', 'blue'];
+  const options = ['red', 'blue', 'white'];
 
   return (
     <div className="dropdown">
@@ -469,14 +469,14 @@ const App = () => {
         <h1 className="text-xl grow">Codenames Game</h1>
         <button className="button-49" onClick={generateGrid}>NEW GAME</button>
       </div>
-      <div className="p-6 grid grid-cols-5 gap-10">
+      <div className="p-6 grid grid-cols-5 gap-8">
         {shuffledWords.map((word, index) => (
           <div
-            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : 'bg-third'}`}
+            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'white' ? 'bg-white' : 'bg-third'}`}
             key={index}
             onClick={() => toggleDropdown(index)}
           >
-            <span className="p-4 text-2xl m-auto">{word}</span>
+            <span className="p-5 text-2xl m-auto">{word}</span>
             {showDropdown && selectedWordIndex === index && (
               <Dropdown onSelect={(option) => handleDropdownSelect(option)} />
             )}
