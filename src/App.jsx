@@ -403,7 +403,7 @@ const wordsData = [
 ];
 
 const Dropdown = ({ onSelect }) => {
-  const options = ['red', 'blue', 'white'];
+  const options = ['Red', 'Blue', 'Gray', 'Default'];
 
   return (
     <div className="dropdown">
@@ -411,9 +411,9 @@ const Dropdown = ({ onSelect }) => {
         <div
           className={`flex items-center rounded-xl px-1 mt-0.5`}
           key={index}
-          onClick={() => onSelect(option)}
+          onClick={() => onSelect(option.toLowerCase())}
         >
-          <span className="m-auto text-xl cursor-pointer">
+          <span className="m-auto text-xs cursor-pointer hover:bg-white px-1 rounded-lg">
             {option}
           </span>
         </div>
@@ -443,10 +443,11 @@ const App = () => {
 
   const generateGrid = () => {
     const shuffledArray = shuffleArray(wordsData);
-    setShuffledWords(shuffledArray);
-    setSelectedTeams(Array(shuffledArray.length).fill(null));
+    const uniqueWords = shuffledArray.slice(0, 25);
+    setShuffledWords(uniqueWords);
+    setSelectedTeams(Array(uniqueWords.length).fill(null));
     setSelectedWordIndex(null);
-  };
+  };  
 
   const handleDropdownSelect = (option) => {
     setShowDropdown(false);
@@ -469,14 +470,16 @@ const App = () => {
         <h1 className="text-xl grow">Codenames Game</h1>
         <button className="button-49" onClick={generateGrid}>NEW GAME</button>
       </div>
-      <div className="p-6 grid grid-cols-5 gap-8">
+      <div className="p-8 grid grid-cols-5 gap-5">
         {shuffledWords.map((word, index) => (
           <div
-            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'white' ? 'bg-white' : 'bg-third'}`}
+            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'gray' ? 'bg-gray-500' : 'bg-third'}`}
             key={index}
             onClick={() => toggleDropdown(index)}
           >
-            <span className="p-5 text-2xl m-auto">{word}</span>
+            <span className="p-6 text-2xl m-auto" style={{ textShadow: '1px 1px 1px white' }}>
+              {word}
+            </span>
             {showDropdown && selectedWordIndex === index && (
               <Dropdown onSelect={(option) => handleDropdownSelect(option)} />
             )}
