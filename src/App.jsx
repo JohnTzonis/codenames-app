@@ -37,11 +37,13 @@ const Dropdown = ({ onSelect }) => {
     <div className="dropdown">
       {options.map((option, index) => (
         <div
-          className="dropdown-option"
+          className={`flex items-center rounded-xl px-1 mt-0.5 border border-black ${option === 'red' ? 'bg-red' : 'bg-blue'}`}
           key={index}
           onClick={() => onSelect(option)}
         >
-          {option}
+          <span className="m-auto text-xl cursor-pointer">
+            {option}
+          </span>
         </div>
       ))}
     </div>
@@ -91,18 +93,18 @@ const App = () => {
   return (
     <div className="h-[100vh]">
       <Snowfall numSnowflakes={50} />
-      <div className="flex items-center p-5">
+      <div className="flex items-center pt-5 px-7">
         <h1 className="text-xl grow">Codenames Game</h1>
         <button className="button-49" onClick={generateGrid}>NEW GAME</button>
       </div>
-      <div className="p-6" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
+      <div className="p-6 grid grid-cols-5 gap-10">
         {shuffledWords.map((word, index) => (
           <div
-            className={`flex rounded border border-teal-300 p-5 hover:bg-red-700 relative ${selectedTeams[index] === 'red' ? 'bg-red-100' : selectedTeams[index] === 'blue' ? 'bg-blue-500' : 'bg-purple-900'}`}
+            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-100' : selectedTeams[index] === 'blue' ? 'bg-blue-500' : 'bg-third'}`}
             key={index}
             onClick={() => toggleDropdown(index)}
           >
-            <span className="text-lg font-semibold m-auto">{word}</span>
+            <span className="p-4 text-2xl font-semibold m-auto">{word}</span>
             {showDropdown && selectedWordIndex === index && (
               <Dropdown onSelect={(option) => handleDropdownSelect(option)} />
             )}
