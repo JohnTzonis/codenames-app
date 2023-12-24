@@ -440,6 +440,18 @@ const App = () => {
   const [selectedTeams, setSelectedTeams] = useState(Array(wordsData.length).fill(null));
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedWordIndex, setSelectedWordIndex] = useState(null);
+  const [blueCount, setBlueCount] = useState(0); // New state for blue team count
+  const [redCount, setRedCount] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+    setIsFullscreen(!isFullscreen);
+  };
 
   const generateGrid = () => {
     const shuffledArray = shuffleArray(wordsData);
@@ -447,6 +459,8 @@ const App = () => {
     setShuffledWords(uniqueWords);
     setSelectedTeams(Array(uniqueWords.length).fill(null));
     setSelectedWordIndex(null);
+    setBlueCount(0);
+    setRedCount(0);
   };  
 
   const handleDropdownSelect = (option) => {
@@ -455,6 +469,12 @@ const App = () => {
       const updatedTeams = [...selectedTeams];
       updatedTeams[selectedWordIndex] = option.toLowerCase();
       setSelectedTeams(updatedTeams);
+
+      if (option.toLowerCase() === 'blue') {
+        setBlueCount((prevCount) => prevCount + 1);
+      } else if (option.toLowerCase() === 'red') {
+        setRedCount((prevCount) => prevCount + 1);
+      }
     }
   };
 
@@ -469,12 +489,25 @@ const App = () => {
       <Snowfall numSnowflakes={50} />
       <div className="flex items-center pt-3 px-9">
         <h1 className="text-5xl text-teal-300 tracking-wide grow" style={{ textShadow: '3px 3px 3px black' }}>Codenames</h1>
+        
+        {/* <div className="mr-6">
+          <span className="text-blue-500 mr-2">Blue: {blueCount}</span>
+          <span className="text-red-500">Red: {redCount}</span>
+        </div> */}
+        <div className="ghost-container mr-6">
+          <div className="ghost"></div>
+        </div>
         <button className="button-49" onClick={generateGrid}>NEW GAME</button>
+        <button className="button-49 ml-4" onClick={toggleFullscreen}>
+          {isFullscreen ? 'Exit' : 'Fullscreen'}
+        </button>
       </div>
-      <div className="px-8 py-4 grid grid-cols-5 gap-5">
+      <div className="px-8 py-3 grid grid-cols-5 gap-5">
         {shuffledWords.map((word, index) => (
           <div
-            className={`flex items-center rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'gray' ? 'bg-gray-500' : 'bg-third'}`}
+            className={`flex items-center rounded-lg border-2 border-teal-300 p-5 ${
+              (selectedTeams[index] !== 'red' && selectedTeams[index] !== 'blue' && selectedTeams[index] !== 'gray') ? 'hover:bg-secondary' : ''
+            } relative cursor-pointer ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'gray' ? 'bg-gray-500' : 'bg-third'}`}
             key={index}
             onClick={() => toggleDropdown(index)}
           >
