@@ -22,9 +22,8 @@ body {
 h1 {
   font-family: 'Rubik Scribble';
 }
+/* END BASICS */
 
-
-/* CSS */
 .button-49,
 .button-49:after {
   width: 150px;
@@ -53,7 +52,7 @@ h1 {
   --slice-4: inset(40% -6px 43% 0);
   --slice-5: inset(80% -6px 5% 0);
   
-  content: 'ALTERNATE TEXT';
+  content: 'ΠΡΕΒΕΖΑ';
   display: block;
   position: absolute;
   top: 0;
@@ -63,7 +62,9 @@ h1 {
   background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
   text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
   clip-path: var(--slice-0);
+  color: black;
 }
+
 
 .button-49:hover:after {
   animation: 1s glitch;
@@ -125,9 +126,8 @@ h1 {
     line-height: 88px;
   }
 }
+/* END BUTTON */
 
-
-/* Snowflake.css */
 .snowflake {
   position: absolute;
   width: 1px;
@@ -154,4 +154,34 @@ h1 {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+/* END SNOWFALL */
+
+.bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation .2s infinite;
+  opacity: .9;
+  visibility: visible;
+}
+
+@keyframes bg-animation {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
 }

@@ -403,17 +403,17 @@ const wordsData = [
 ];
 
 const Dropdown = ({ onSelect }) => {
-  const options = ['Red', 'Blue', 'Gray', 'Default'];
+  const options = ['Red', 'Blue', 'Gray'];
 
   return (
-    <div className="dropdown">
+    <div className="">
       {options.map((option, index) => (
         <div
           className={`flex items-center rounded-xl px-1 mt-0.5`}
           key={index}
           onClick={() => onSelect(option.toLowerCase())}
         >
-          <span className="m-auto text-xs cursor-pointer hover:bg-white px-1 rounded-lg">
+          <span className="m-auto text-sm cursor-pointer hover:bg-white px-1 rounded-lg">
             {option}
           </span>
         </div>
@@ -465,19 +465,20 @@ const App = () => {
 
   return (
     <div className="h-[100vh]">
+      <div className="bg"></div>
       <Snowfall numSnowflakes={50} />
-      <div className="flex items-center pt-5 px-9">
-        <h1 className="text-5xl text-teal-300 tracking-wide grow">Codenames</h1>
+      <div className="flex items-center pt-3 px-9">
+        <h1 className="text-5xl text-teal-300 tracking-wide grow" style={{ textShadow: '3px 3px 3px black' }}>Codenames</h1>
         <button className="button-49" onClick={generateGrid}>NEW GAME</button>
       </div>
-      <div className="p-8 grid grid-cols-5 gap-5">
+      <div className="px-8 py-4 grid grid-cols-5 gap-5">
         {shuffledWords.map((word, index) => (
           <div
-            className={`flex rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'gray' ? 'bg-gray-500' : 'bg-third'}`}
+            className={`flex items-center rounded-lg border border-teal-300 p-5 hover:bg-secondary relative ${selectedTeams[index] === 'red' ? 'bg-red-600' : selectedTeams[index] === 'blue' ? 'bg-blue-800' : selectedTeams[index] === 'gray' ? 'bg-gray-500' : 'bg-third'}`}
             key={index}
             onClick={() => toggleDropdown(index)}
           >
-            <span className="p-6 text-2xl m-auto" style={{ textShadow: '1px 1px 1px white' }}>
+            <span className="p-6 text-3xl m-auto" style={{ textShadow: '1px 1px 1px white', fontFamily: 'Roboto Mono', fontWeight: '600' }}>
               {word}
             </span>
             {showDropdown && selectedWordIndex === index && (
