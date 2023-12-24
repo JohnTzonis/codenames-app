@@ -488,7 +488,7 @@ const App = () => {
       <div className="bg"></div>
       <Snowfall numSnowflakes={50} />
       <div className="flex items-center pt-3 px-9">
-        <h1 className="text-5xl text-teal-300 tracking-wide grow" style={{ textShadow: '3px 3px 3px black' }}>Codenames</h1>
+        <h1 className="text-5xl text-teal-300 tracking-wide grow animated-title" style={{ textShadow: '3px 3px 3px black' }}>Codenames</h1>
         
         {/* <div className="mr-6">
           <span className="text-blue-500 mr-2">Blue: {blueCount}</span>

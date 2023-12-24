@@ -230,3 +230,17 @@ h1 {
         transform: translateY(0);
     }
  }
+
+
+ .animated-title {
+  animation: slideAnimation 2s infinite alternate;
+}
+
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
